@@ -1,11 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fitnessapp/Instructor/ins_login.dart';
 import 'package:fitnessapp/screens/nav_pages/home_page.dart';
 import 'package:fitnessapp/screens/sign_up.dart';
-import 'package:flutter/services.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'nav_drawer.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:flutter/material.dart';
 import 'package:fitnessapp/components/constants.dart';
 import 'package:fitnessapp/components/form_text_field.dart';
@@ -19,13 +15,12 @@ class LoginPage extends StatefulWidget {
 
 class LoginPage_State extends State<LoginPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  String email, password;
-  FirebaseAuth auth;
+  late String email, password;
+  FirebaseAuth? auth;
   bool loading = false;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     auth = FirebaseAuth.instance;
   }
@@ -101,31 +96,39 @@ class LoginPage_State extends State<LoginPage> {
                                   loading = true;
                                 });
                                 try {
-                                  final user = await FirebaseAuth.instance.signInWithEmailAndPassword(
-                                      email: email,
-                                      password: password,
+                                  final user = await FirebaseAuth.instance
+                                      .signInWithEmailAndPassword(
+                                    email: email,
+                                    password: password,
                                   );
-                                  if(user != null)
-                                    {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
-                                    }
+                                  if (user != null) {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => HomePage()));
+                                  }
                                   setState(() {
                                     loading = false;
                                   });
-                                }
-                                on FirebaseAuthException catch (e) {
+                                } on FirebaseAuthException catch (e) {
                                   setState(() {
                                     loading = false;
                                   });
                                   if (e.code == 'user-not-found') {
                                     print('No user found for that email.');
-                                    final snackBar = SnackBar(content: Text('No user found for that email.'));
-                                    _scaffoldKey.currentState.showSnackBar(snackBar);
-
+                                    final snackBar = SnackBar(
+                                        content: Text(
+                                            'No user found for that email.'));
+                                    _scaffoldKey.currentState!
+                                        .showSnackBar(snackBar);
                                   } else if (e.code == 'wrong-password') {
-                                    print('Wrong password provided for that user.');
-                                    final snackBar = SnackBar(content: Text('Wrong password provided for that user.'));
-                                    _scaffoldKey.currentState.showSnackBar(snackBar);
+                                    print(
+                                        'Wrong password provided for that user.');
+                                    final snackBar = SnackBar(
+                                        content: Text(
+                                            'Wrong password provided for that user.'));
+                                    _scaffoldKey.currentState!
+                                        .showSnackBar(snackBar);
                                   }
                                 }
                               },

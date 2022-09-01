@@ -159,7 +159,7 @@ class _BigAarmExrState extends State<BigAarmExr> {
                 padding: EdgeInsets.all(10),
                 children: [
                   for(int i=0;i<begarm.length;i++)
-                    ExerCard(title: begarm[i]['title'],req:begarm[i]['reqtype']=='time'? "00:"+begarm[i]['req']:begarm[i]['req'],gifpath: begarm[i]['anim'],),
+                    ExerCard(title: begarm[i]['title'],req:begarm[i]['reqtype']=='time'? "00:"+begarm[i]['req']!:begarm[i]['req'],gifpath: begarm[i]['anim'],),
 
               RoundButton(textval: "START EXERCISE",onpress: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>StartExer(begarm,kcal,exrtime,exrtitle)));

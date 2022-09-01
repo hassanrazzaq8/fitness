@@ -1,7 +1,6 @@
 import 'package:fitnessapp/Instructor/ins_nav_drawer.dart';
 import 'package:fitnessapp/components/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TraineeProfile extends StatefulWidget {
   @override
@@ -38,8 +37,7 @@ class _TraineeProfileState extends State<TraineeProfile> {
                           shape: BoxShape.circle,
                           image: new DecorationImage(
                             fit: BoxFit.cover,
-                            image: AssetImage(
-                                "images/profile_avatar.png"),
+                            image: AssetImage("images/profile_avatar.png"),
                           ),
                         ),
                       ),
@@ -164,12 +162,20 @@ class _TraineeProfileState extends State<TraineeProfile> {
                         )
                       ],
                     ),
-                    SizedBox(height: 30,),
+                    SizedBox(
+                      height: 30,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Name: ", style: TextStyleFormBlackBold,),
-                        Text("Shahroz Javed", style: TextStyleFormBlack,)
+                        Text(
+                          "Name: ",
+                          style: TextStyleFormBlackBold,
+                        ),
+                        Text(
+                          "Shahroz Javed",
+                          style: TextStyleFormBlack,
+                        )
                       ],
                     ),
                     SizedBox(
@@ -178,8 +184,14 @@ class _TraineeProfileState extends State<TraineeProfile> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Weight: ", style: TextStyleFormBlackBold,),
-                        Text("0", style: TextStyleFormBlack,)
+                        Text(
+                          "Weight: ",
+                          style: TextStyleFormBlackBold,
+                        ),
+                        Text(
+                          "0",
+                          style: TextStyleFormBlack,
+                        )
                       ],
                     ),
                     SizedBox(
@@ -188,8 +200,14 @@ class _TraineeProfileState extends State<TraineeProfile> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("height: ", style: TextStyleFormBlackBold,),
-                        Text("0", style: TextStyleFormBlack,)
+                        Text(
+                          "height: ",
+                          style: TextStyleFormBlackBold,
+                        ),
+                        Text(
+                          "0",
+                          style: TextStyleFormBlack,
+                        )
                       ],
                     )
                   ],

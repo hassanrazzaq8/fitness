@@ -7,7 +7,7 @@ import 'content_page.dart';
 import 'chat_screen.dart';
 
 class InsProfileDetailPage extends StatefulWidget {
-  String email;
+  String? email;
 
   InsProfileDetailPage({this.email});
 
@@ -60,7 +60,7 @@ class _InsProfileDetailPageState extends State<InsProfileDetailPage> {
                     ),
                   ),
                   Text(
-                    widget.email,
+                    widget.email!,
                     style: TextStyleForm,
                   )
                 ],
@@ -155,10 +155,10 @@ class _InsProfileDetailPageState extends State<InsProfileDetailPage> {
 }
 
 class InsProfileCards extends StatelessWidget {
-  String title;
-  IconData icondata;
-  Function onpress;
-  Color iconcolor;
+  String? title;
+  IconData? icondata;
+  Function? onpress;
+  Color? iconcolor;
 
   InsProfileCards(
       {this.title, this.icondata, this.iconcolor, this.onpress});
@@ -174,7 +174,7 @@ class InsProfileCards extends StatelessWidget {
         elevation: 5.0,
         child: MaterialButton(
           elevation: 5.0,
-          onPressed: onpress,
+          onPressed: onpress as void Function()?,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
@@ -189,7 +189,7 @@ class InsProfileCards extends StatelessWidget {
                 width: 10,
               ),
               Text(
-                title,
+                title!,
                 style: TextStyleMedium,
               )
             ],

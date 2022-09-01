@@ -4,8 +4,8 @@ import 'constants.dart';
 
 class DarkTextField extends StatelessWidget {
   var inputtype;
-  Function onChanged;
-  String inputval;
+  Function? onChanged;
+  String? inputval;
 
   DarkTextField({this.inputtype,this.onChanged,this.inputval});
 
@@ -13,7 +13,7 @@ class DarkTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       textAlign: TextAlign.center,
-      onChanged: onChanged,
+      onChanged: onChanged as void Function(String)?,
       keyboardType: inputtype,
       style: TextStyleFormBlack,
       decoration: InputDecoration(
@@ -22,13 +22,13 @@ class DarkTextField extends StatelessWidget {
         hintStyle:
         TextStyle(fontSize: 18, color: mainaccent),
         enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey[800]),
+          borderSide: BorderSide(color: Colors.grey[800]!),
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: mainaccent),
         ),
         border: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey[800]),
+          borderSide: BorderSide(color: Colors.grey[800]!),
         ),
       ),
     );

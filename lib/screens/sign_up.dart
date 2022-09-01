@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fitnessapp/components/form_text_field.dart';
 import 'package:fitnessapp/components/round_button.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import 'nav_pages/home_page.dart';
 
@@ -17,7 +17,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  String email,
+  String? email,
       pass,
       name,
       age,
@@ -29,16 +29,43 @@ class _SignUpPageState extends State<SignUpPage> {
   bool loading = false;
   List height_type_list = ["ft", "cm"];
   List weight_type_list = ["kg", "lbs"];
+  bool isLoading = false;
 
-  FirebaseAuth auth;
-  FirebaseFirestore firestore;
+  late FirebaseAuth auth;
+  late FirebaseFirestore firestore;
+  // void addUser(
+  //   String uid,
+  //   String email,
+  //   String password,
+  //   String age,
+  //   String contact,
+  //   String weight,
+  // ) async {
+  //   setState(() {
+  //     isLoading = true;
+  //   });
+  //   try {
+  //     String res = await FireStorage().uploadUser(
+  //       uid,
+  //       email,
+  //       password,
+  //       age,
+  //       contact,
+  //       weight,
+  //     );
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  //   setState(() {
+  //     isLoading = false;
+  //   });
+  // }
 
   @override
   void initState() {
     auth = FirebaseAuth.instance;
     firestore = FirebaseFirestore.instance;
     super.initState();
-
   }
 
   @override
@@ -203,24 +230,33 @@ class _SignUpPageState extends State<SignUpPage> {
                                 height: 40,
                                 width: 120,
                                 onpress: () async {
-                                  FocusScope.of(context).unfocus();
+                                  // FocusScope.of(context).unfocus();
                                   setState(() {
                                     loading = true;
                                   });
                                   try {
                                     final newuser = await auth
                                         .createUserWithEmailAndPassword(
-                                      email: email,
-                                      password: pass,
+                                      email: email!,
+                                      password: pass!,
                                     );
                                     if (newuser != null) {
+                                      // addUser(
+                                      //   auth.currentUser.uid,
+                                      //   email,
+                                      //   pass,
+                                      //   age,
+                                      //   contact,
+                                      //   weight,
+                                      // );
                                       addUserData();
                                       addUserExerData();
                                       Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  HomePage()));
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => HomePage(),
+                                        ),
+                                      );
                                     }
 
                                     setState(() {
@@ -234,7 +270,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     if (e.code == 'weak-password') {
                                       final snackBar = SnackBar(
                                           content: Text('Weak Password'));
-                                      _scaffoldKey.currentState
+                                      _scaffoldKey.currentState!
                                           .showSnackBar(snackBar);
                                     } else if (e.code ==
                                         'email-already-in-use') {
@@ -243,7 +279,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       final snackBar = SnackBar(
                                           content: Text(
                                               'The account already exists for that email.'));
-                                      _scaffoldKey.currentState
+                                      _scaffoldKey.currentState!
                                           .showSnackBar(snackBar);
                                     }
                                   } catch (e) {
@@ -292,38 +328,47 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Future<void> addUserData() async {
-    final users = await firestore.collection('users').doc(email).set( {         'id': email,
-    'email': email,
-    'name': name,
-    'age': age,
-        'height': height,
-        'height_type': height_type,
-        'weight': weight,
-        'weight_type': weight_type,
-        'contact': contact,
-        'type' : 'user',
-        'image': 'N/A',
-    })
-      .then((value) => print("User Added"))
-      .catchError((error) => print("Failed to add user: $error"));
+    final users = await firestore
+        .collection('users')
+        .doc(email)
+        .set({
+          'id': email,
+          'email': email,
+          'name': name,
+          'age': age,
+          'height': height,
+          'height_type': height_type,
+          'weight': weight,
+          'weight_type': weight_type,
+          'contact': contact,
+          'type': 'user',
+          'image': 'N/A',
+        })
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
 
     return users;
   }
+
   Future<void> addUserExerData() async {
     List<String> empty = ['notset'];
-    final userexer = await firestore.collection('userexer').doc(email).set( {         'id': email,
-    'email': email,
-    'name': name,
-    'age': age,
-        'goal': empty.toList(),
-        'isgoal':'notset',
-        'kcal': '0',
-        'km': '0',
-        'minute': '0',
-        'workout': '0',
-    })
-      .then((value) => print("User Exercise data Added"))
-      .catchError((error) => print("Failed to add user: $error"));
+    final userexer = await firestore
+        .collection('userexer')
+        .doc(email)
+        .set({
+          'id': email,
+          'email': email,
+          'name': name,
+          'age': age,
+          'goal': empty.toList(),
+          'isgoal': 'notset',
+          'kcal': '0',
+          'km': '0',
+          'minute': '0',
+          'workout': '0',
+        })
+        .then((value) => print("User Exercise data Added"))
+        .catchError((error) => print("Failed to add user: $error"));
 
     return userexer;
   }

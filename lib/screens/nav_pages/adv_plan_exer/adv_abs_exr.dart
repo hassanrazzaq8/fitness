@@ -188,7 +188,7 @@ class _AdvAbsExrState extends State<AdvAbsExr> {
                 padding: EdgeInsets.all(10),
                 children: [
                   for(int i=0;i<advabs.length;i++)
-                    ExerCard(title: advabs[i]['title'],req:advabs[i]['reqtype']=='time'? "00:"+advabs[i]['req']:advabs[i]['req'],gifpath: advabs[i]['anim'],),
+                    ExerCard(title: advabs[i]['title'],req:advabs[i]['reqtype']=='time'? "00:"+advabs[i]['req']!:advabs[i]['req'],gifpath: advabs[i]['anim'],),
                   SizedBox(height: 10,),
                   RoundButton(textval: "START EXERCISE",onpress: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>StartExer(advabs,kcal,exrtime,exrtitle)));

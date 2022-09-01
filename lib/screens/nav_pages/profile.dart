@@ -5,7 +5,6 @@ import 'package:fitnessapp/components/form_text_field.dart';
 import 'package:fitnessapp/components/round_button.dart';
 import 'package:fitnessapp/components/constants.dart';
 import 'package:fitnessapp/screens/nav_drawer.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -14,9 +13,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  FirebaseFirestore firestore;
-  FirebaseAuth auth;
-  String userid;
+  late FirebaseFirestore firestore;
+  late FirebaseAuth auth;
+  String? userid;
 
   Future<void> getCurrentUser() async {
     auth = FirebaseAuth.instance;
@@ -34,7 +33,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getCurrentUser();
     firestore = FirebaseFirestore.instance;
@@ -66,7 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
             }
 
             if (snapshot.connectionState == ConnectionState.done) {
-              Map<String, dynamic> data = snapshot.data.data();
+              Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
 
               return Column(
                 children: [

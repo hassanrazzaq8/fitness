@@ -1,6 +1,3 @@
-// ignore_for_file: missing_required_param
-
-import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:day_picker/day_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,16 +5,13 @@ import 'package:fitnessapp/components/plan_cards.dart';
 import 'package:fitnessapp/components/constants.dart';
 import 'package:fitnessapp/screens/nav_drawer.dart';
 import 'package:fitnessapp/screens/login.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fitnessapp/components/round_button.dart';
-import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:toast/toast.dart';
-
 import 'beginner_plan_exr/beginner_plan.dart';
 import 'diet_page.dart';
 import 'inter_plan_exer/inter_plan.dart';
@@ -28,11 +22,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  FirebaseAuth auth;
-  List<String> isgoalset;
-  String userid = "id";
-  List daylist;
-  FlutterLocalNotificationsPlugin fltrnotifcation;
+  late FirebaseAuth auth;
+  List<String>? isgoalset;
+  String? userid;
+  late List daylist;
+  late FlutterLocalNotificationsPlugin fltrnotifcation;
   Box<bool> dailynotifyBox = Hive.box('notify');
   int dailynotifykey = 100;
 
@@ -69,7 +63,7 @@ class _HomePageState extends State<HomePage> {
     dailynotifyBox.put(dailynotifykey, true);
   }
 
-  Future notificationSelected(String payload) async {}
+  Future notificationSelected(String? payload) async {}
 
   @override
   void initState() {
@@ -95,13 +89,11 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             icon: Icon(
-              Icons.power_settings_new,
+              Icons.send,
               color: Colors.white,
             ),
             onPressed: () {
-              auth.signOut();
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => LoginPage()));
+              
             },
           )
         ],
@@ -291,7 +283,7 @@ class _HomePageState extends State<HomePage> {
       context: context,
       pageBuilder: (_, __, ___) {
         // ignore: deprecated_member_use
-        List<String> days = List<String>();
+        List<String> days = [];
         return Align(
           alignment: Alignment.bottomCenter,
           child: Container(
@@ -300,7 +292,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(20),
               child: SizedBox.expand(
                 child: Container(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -328,6 +320,7 @@ class _HomePageState extends State<HomePage> {
                           print(values);
                           days = values;
                         },
+                        days: [],
                       ),
                       SizedBox(
                         height: 15,
@@ -362,10 +355,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Future<void> addUserGoal(List<String> days) async {
+  addUserGoal(List<String> days) async {
     if (days.isEmpty) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
     } else {
-      final users = await FirebaseFirestore.instance
+      final dynamic users = await FirebaseFirestore.instance
           .collection('userexer')
           .doc(userid)
           .update({
@@ -385,7 +381,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  static List<String> getDaysOfWeek([String locale]) {
+  static List<String> getDaysOfWeek([String? locale]) {
     final now = DateTime.now();
     final firstDayOfWeek = now.subtract(Duration(days: now.weekday - 1));
     return List.generate(7, (index) => index)
@@ -395,6 +391,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   FutureBuilder<DocumentSnapshot> showuserWeekdays() {
+    userid = auth.currentUser!.email;
     DocumentReference document =
         FirebaseFirestore.instance.collection("userexer").doc(userid);
     return FutureBuilder<DocumentSnapshot>(
@@ -402,7 +399,7 @@ class _HomePageState extends State<HomePage> {
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasData) {
-          var data = snapshot.data;
+          var data = snapshot.data!;
           if (data['isgoal'] == "set") {
             daylist = List.from(data['goal']);
             return Container(

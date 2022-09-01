@@ -16,37 +16,40 @@ class _ReqTrainerState extends State<ReqTrainer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Trainers Requests'),),
+      appBar: AppBar(
+        title: Text('Trainers Requests'),
+      ),
       drawer: NavDrawer(),
       body: Container(
           padding: EdgeInsets.all(10),
           child: StreamBuilder(
-            stream: FirebaseFirestore.instance.collection('instructor')
-                .doc(FirebaseAuth.instance.currentUser.email.toString())
+            stream: FirebaseFirestore.instance
+                .collection('instructor')
+                .doc(FirebaseAuth.instance.currentUser!.email.toString())
                 .collection('Trainer')
                 .snapshots(),
-            builder: (BuildContext context,
-                AsyncSnapshot<QuerySnapshot> snapshot) {
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasData) {
                 return ListView(
-                  children: snapshot.data.docs.map((document) {
-                    return ProfileCard(email: document['id'],);
+                  children: snapshot.data!.docs.map((document) {
+                    return ProfileCard(
+                      email: document['id'],
+                    );
                   }).toList(),
                 );
               }
               return CustomLoading();
             },
-          )
-      ),
+          )),
     );
   }
 }
 
 class ProfileCard extends StatefulWidget {
-  String email;
+  final String email;
 
-
-  ProfileCard({this.email});
+  ProfileCard({required this.email});
 
   @override
   _ProfileCardState createState() => _ProfileCardState();
@@ -57,8 +60,8 @@ class _ProfileCardState extends State<ProfileCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => TraineeProfile()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => TraineeProfile()));
       },
       child: Card(
         shape: RoundedRectangleBorder(
@@ -75,8 +78,7 @@ class _ProfileCardState extends State<ProfileCard> {
                   shape: BoxShape.circle,
                   image: new DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage(
-                        "images/profile_avatar.png"),
+                    image: AssetImage("images/profile_avatar.png"),
                   ),
                 ),
               ),
@@ -117,5 +119,3 @@ class _ProfileCardState extends State<ProfileCard> {
     );
   }
 }
-
-

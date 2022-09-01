@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class PlanCards extends StatelessWidget {
-  String imagepath;
-  String cardText;
-  Function ontap;
-  Color color1, color2, color3;
+  String? imagepath;
+  String? cardText;
+  Function? ontap;
+  Color? color1, color2, color3;
 
   PlanCards(
       {this.imagepath,
@@ -19,7 +19,7 @@ class PlanCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ontap,
+      onTap: ontap as void Function()?,
       child: Card(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15))),
@@ -29,14 +29,14 @@ class PlanCards extends StatelessWidget {
           height: 200,
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage(imagepath), fit: BoxFit.cover),
+                  image: AssetImage(imagepath!), fit: BoxFit.cover),
               borderRadius: BorderRadius.all(Radius.circular(15))),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                cardText,
+                cardText!,
                 style: TextStyleHeadingBold,
               ),
               Row(

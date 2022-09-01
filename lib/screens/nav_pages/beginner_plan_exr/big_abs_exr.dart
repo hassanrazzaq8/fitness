@@ -5,7 +5,6 @@ import 'package:fitnessapp/screens/nav_pages/start_exer.dart';
 import 'package:fitnessapp/screens/nav_drawer.dart';
 import 'package:fitnessapp/screens/start_ind_exr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gifimage/flutter_gifimage.dart';
 
 class BigAbsExr extends StatefulWidget {
   @override
@@ -147,7 +146,7 @@ class _BigAbsExrState extends State<BigAbsExr> {
                     ExerCard(
                       title: begabs[i]['title'],
                       req: begabs[i]['reqtype'] == 'time'
-                          ? "00:" + begabs[i]['req']
+                          ? "00:" + begabs[i]['req']!
                           : begabs[i]['req'],
                       gifpath: begabs[i]['anim'],
                       ontap: () {

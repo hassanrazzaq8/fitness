@@ -1,8 +1,6 @@
 import 'package:fitnessapp/components/dark_text_field.dart';
-import 'package:fitnessapp/components/form_text_field.dart';
 import 'package:fitnessapp/components/round_button.dart';
 import 'package:fitnessapp/components/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../ins_nav_drawer.dart';
@@ -43,8 +41,7 @@ class _InsProfilePageState extends State<InsProfilePage> {
                           shape: BoxShape.circle,
                           image: new DecorationImage(
                             fit: BoxFit.cover,
-                            image: AssetImage(
-                                "images/profile_avatar.png"),
+                            image: AssetImage("images/profile_avatar.png"),
                           ),
                         ),
                       ),

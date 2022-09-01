@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitnessapp/components/form_text_field.dart';
 import 'package:fitnessapp/screens/login.dart';
@@ -7,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:fitnessapp/components/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fitnessapp/components/round_button.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'ins_sign_up.dart';
 import 'instructor_screens/ins_homepage.dart';
 
@@ -17,9 +19,8 @@ class InsLoginPage extends StatefulWidget {
 }
 
 class Ins_LoginPage_State extends State<InsLoginPage> {
-
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  String email, password;
+  String? email, password;
   bool loading = false;
 
   @override
@@ -95,31 +96,40 @@ class Ins_LoginPage_State extends State<InsLoginPage> {
                                   loading = true;
                                 });
                                 try {
-                                  final user = await FirebaseAuth.instance.signInWithEmailAndPassword(
-                                    email: email,
-                                    password: password,
+                                  final user = await FirebaseAuth.instance
+                                      .signInWithEmailAndPassword(
+                                    email: email!,
+                                    password: password!,
                                   );
-                                  if(user != null)
-                                  {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => InsHomePage()));
+                                  if (user != null) {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                InsHomePage()));
                                   }
                                   setState(() {
                                     loading = false;
                                   });
-                                }
-                                on FirebaseAuthException catch (e) {
+                                } on FirebaseAuthException catch (e) {
                                   setState(() {
                                     loading = false;
                                   });
                                   if (e.code == 'user-not-found') {
                                     print('No user found for that email.');
-                                    final snackBar = SnackBar(content: Text('No user found for that email.'));
-                                    _scaffoldKey.currentState.showSnackBar(snackBar);
-
+                                    final snackBar = SnackBar(
+                                        content: Text(
+                                            'No user found for that email.'));
+                                    _scaffoldKey.currentState!
+                                        .showSnackBar(snackBar);
                                   } else if (e.code == 'wrong-password') {
-                                    print('Wrong password provided for that user.');
-                                    final snackBar = SnackBar(content: Text('Wrong password provided for that user.'));
-                                    _scaffoldKey.currentState.showSnackBar(snackBar);
+                                    print(
+                                        'Wrong password provided for that user.');
+                                    final snackBar = SnackBar(
+                                        content: Text(
+                                            'Wrong password provided for that user.'));
+                                    _scaffoldKey.currentState!
+                                        .showSnackBar(snackBar);
                                   }
                                 }
                               },
@@ -248,7 +258,8 @@ class Ins_LoginPage_State extends State<InsLoginPage> {
                         onpress: () {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => LoginPage()),
+                            MaterialPageRoute(
+                                builder: (context) => LoginPage()),
                           );
                         },
                       )

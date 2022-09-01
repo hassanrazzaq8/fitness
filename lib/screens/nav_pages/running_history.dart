@@ -13,7 +13,7 @@ class RunningHistory extends StatefulWidget {
 }
 
 class _RunningHistoryState extends State<RunningHistory> {
-  FirebaseAuth auth;
+  late FirebaseAuth auth;
 
   String userid = "id";
 
@@ -66,7 +66,7 @@ class _RunningHistoryState extends State<RunningHistory> {
             }
 
             return ListView(
-              children: snapshot.data.docs.map((document) {
+              children: snapshot.data!.docs.map((document) {
                 return Card(
                   elevation: 3,
                   shape: RoundedRectangleBorder(

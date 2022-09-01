@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class FormTextFieldDark extends StatelessWidget {
-  bool obscuretext;
+  bool? obscuretext;
   var inputtype;
-  String labeltext;
-  Function onChanged;
+  String? labeltext;
+  Function? onChanged;
 
 
 
@@ -14,8 +14,8 @@ class FormTextFieldDark extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      onChanged: onChanged,
-      obscureText: obscuretext,
+      onChanged: onChanged as void Function(String)?,
+      obscureText: obscuretext!,
       keyboardType: inputtype,
       style: TextStyleFormBlack,
       decoration: InputDecoration(

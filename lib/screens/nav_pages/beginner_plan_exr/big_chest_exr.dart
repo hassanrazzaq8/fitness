@@ -112,7 +112,7 @@ class _big_chest_exrState extends State<big_chest_exr> {
                 children: [
 
                   for(int i=0;i<begchest.length;i++)
-                    ExerCard(title: begchest[i]['title'],req:begchest[i]['reqtype']=='time'? "00:"+begchest[i]['req']:begchest[i]['req'],gifpath: begchest[i]['anim'],),
+                    ExerCard(title: begchest[i]['title'],req:begchest[i]['reqtype']=='time'? "00:"+begchest[i]['req']!:begchest[i]['req'],gifpath: begchest[i]['anim'],),
 
                   RoundButton(textval: "START EXERCISE",onpress: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>StartExer(begchest,kcal,exrtime,exrtitle)));

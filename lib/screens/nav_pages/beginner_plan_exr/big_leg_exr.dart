@@ -179,7 +179,7 @@ class _big_leg_exrState extends State<big_leg_exr> {
                 padding: EdgeInsets.all(10),
                 children: [
                   for(int i=0;i<begleg.length;i++)
-                    ExerCard(title: begleg[i]['title'],req:begleg[i]['reqtype']=='time'? "00:"+begleg[i]['req']:begleg[i]['req'],gifpath: begleg[i]['anim'],),
+                    ExerCard(title: begleg[i]['title'],req:begleg[i]['reqtype']=='time'? "00:"+begleg[i]['req']!:begleg[i]['req'],gifpath: begleg[i]['anim'],),
                   RoundButton(textval: "START EXERCISE",onpress: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>StartExer(begleg,kcal,exrtime,exrtitle)));
                   },)

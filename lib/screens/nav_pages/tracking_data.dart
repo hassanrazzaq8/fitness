@@ -31,7 +31,7 @@ class _TrackingDataState extends State<TrackingData> {
               child: StreamBuilder(
                 stream: FirebaseFirestore.instance
                     .collection("userexer")
-                    .doc(FirebaseAuth.instance.currentUser.email)
+                    .doc(FirebaseAuth.instance.currentUser!.email)
                     .collection("workouts")
                     .orderBy('date', descending: true)
                     .snapshots(),
@@ -48,7 +48,7 @@ class _TrackingDataState extends State<TrackingData> {
                   }
 
                   return ListView(
-                    children: snapshot.data.docs.map((document) {
+                    children: snapshot.data!.docs.map((document) {
                       return Card(
                         elevation: 3,
                         shape: RoundedRectangleBorder(

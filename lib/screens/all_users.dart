@@ -1,42 +1,43 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitnessapp/components/round_button.dart';
-import 'package:fitnessapp/components/constants.dart';
-import 'package:fitnessapp/components/custom_loading.dart';
-import 'package:fitnessapp/screens/nav_drawer.dart';
 import 'package:flutter/material.dart';
 
-class ReqInstructor extends StatefulWidget {
+class AllUsers extends StatefulWidget {
+  const AllUsers({Key? key}) : super(key: key);
+
   @override
-  _ReqInstructorState createState() => _ReqInstructorState();
+  State<AllUsers> createState() => _AllUsersState();
 }
 
-class _ReqInstructorState extends State<ReqInstructor> {
+class _AllUsersState extends State<AllUsers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavDrawer(),
       appBar: AppBar(
-        title: Text("All Instructors"),
+        title: Text("All Trainees"),
       ),
       body: Container(
         padding: EdgeInsets.all(10),
         child: StreamBuilder(
-          stream:
-              FirebaseFirestore.instance.collection('instructor').snapshots(),
+          stream: FirebaseFirestore.instance.collection('users').snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasData) {
               return ListView(
-                children: snapshot.data!.docs.map((document) {
-                  return ProfileCard(
-                    email: document['email'],
-                    name: document['name'],
-                  );
-                }).toList(),
+                children: snapshot.data!.docs.map(
+                  (document) {
+                    return UserProfile(
+                      email: document['email'],
+                      name: document['name'],
+                    );
+                  },
+                ).toList(),
               );
             }
-            return CustomLoading();
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           },
         ),
       ),
@@ -44,17 +45,20 @@ class _ReqInstructorState extends State<ReqInstructor> {
   }
 }
 
-class ProfileCard extends StatefulWidget {
-  String? email;
-  String? name;
+class UserProfile extends StatefulWidget {
+  final String email;
+  final String name;
 
-  ProfileCard({this.email, this.name});
+  UserProfile({
+    required this.email,
+    required this.name,
+  });
 
   @override
-  _ProfileCardState createState() => _ProfileCardState();
+  _UserProfileState createState() => _UserProfileState();
 }
 
-class _ProfileCardState extends State<ProfileCard> {
+class _UserProfileState extends State<UserProfile> {
   bool isreq = false;
 
   @override
@@ -86,12 +90,20 @@ class _ProfileCardState extends State<ProfileCard> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      widget.name!,
-                      style: TextStyleFormBlackBold,
+                      widget.name,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     Text(
-                      widget.email!,
-                      style: TextStyleFormBlack,
+                      widget.email,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     SizedBox(
                       height: 10,
@@ -131,9 +143,9 @@ class _ProfileCardState extends State<ProfileCard> {
 
   Future<void> sendRequest({String? mail}) async {
     final users = await FirebaseFirestore.instance
-        .collection('instructor')
+        .collection('users')
         .doc(mail)
-        .collection("Trainer")
+        .collection("Requests")
         .doc(FirebaseAuth.instance.currentUser!.email.toString())
         .set({
           'id': FirebaseAuth.instance.currentUser!.email.toString(),
@@ -147,9 +159,9 @@ class _ProfileCardState extends State<ProfileCard> {
 
   Future<void> cancelRequest({String? mail}) async {
     final users = await FirebaseFirestore.instance
-        .collection('instructor')
+        .collection('users')
         .doc(mail)
-        .collection("Trainer")
+        .collection("Requests")
         .doc(FirebaseAuth.instance.currentUser!.email.toString())
         .delete()
         .then((value) => print("Request canceled"))

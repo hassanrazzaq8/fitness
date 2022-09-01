@@ -192,7 +192,7 @@ class _inter_arm_exrState extends State<inter_arm_exr> {
                 padding: EdgeInsets.all(10),
                 children: [
                   for(int i=0;i<interarm.length;i++)
-                      ExerCard(title: interarm[i]['title'],req:interarm[i]['reqtype']=='time'? "00:"+interarm[i]['req']:interarm[i]['req'],gifpath: interarm[i]['anim'],),
+                      ExerCard(title: interarm[i]['title'],req:interarm[i]['reqtype']=='time'? "00:"+interarm[i]['req']!:interarm[i]['req'],gifpath: interarm[i]['anim'],),
                   RoundButton(textval: "START EXERCISE",onpress: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>StartExer(interarm,kcal,exrtime,exrtitle)));
                   },)

@@ -1,21 +1,16 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fitnessapp/components/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
-// import 'package:flutter_full_pdf_viewer/full_pdf_viewer_scaffold.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:toast/toast.dart';
 
 import '../nav_drawer.dart';
 
 class ContentPage extends StatefulWidget {
-  String insemail;
+  String? insemail;
 
   ContentPage({this.insemail});
 
@@ -24,7 +19,7 @@ class ContentPage extends StatefulWidget {
 }
 
 class _ContentPageState extends State<ContentPage> {
-  Future<File> createFileOfPdfUrl(String geturl, String getfilename) async {
+  Future<File> createFileOfPdfUrl(String geturl, String? getfilename) async {
     final url = geturl;
     final filename = getfilename;
     var request = await HttpClient().getUrl(Uri.parse(url));
@@ -57,7 +52,7 @@ class _ContentPageState extends State<ContentPage> {
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasData) {
               return ListView(
-                children: snapshot.data.docs.map((document) {
+                children: snapshot.data!.docs.map((document) {
                   return ContentCards(
                     title: document['filename'],
                     onpress: () {
@@ -89,10 +84,10 @@ class _ContentPageState extends State<ContentPage> {
 }
 
 class ContentCards extends StatelessWidget {
-  String title;
-  IconData icondata;
-  Function onpress;
-  Color iconcolor;
+  String? title;
+  IconData? icondata;
+  Function? onpress;
+  Color? iconcolor;
 
   ContentCards({this.title, this.onpress});
 
@@ -107,7 +102,7 @@ class ContentCards extends StatelessWidget {
         elevation: 5.0,
         child: MaterialButton(
           elevation: 5.0,
-          onPressed: onpress,
+          onPressed: onpress as void Function()?,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
@@ -122,7 +117,7 @@ class ContentCards extends StatelessWidget {
                 width: 10,
               ),
               Text(
-                title,
+                title!,
                 style: TextStyleMediumBlack,
               )
             ],
@@ -135,22 +130,23 @@ class ContentCards extends StatelessWidget {
 
 class PDFScreen extends StatelessWidget {
   String pathPDF = "";
-  String name = "";
+  String? name = "";
 
   PDFScreen(this.pathPDF, this.name);
 
   @override
   Widget build(BuildContext context) {
-    // return PDFViewerScaffold(
-    //     appBar: AppBar(
-    //       title: Text(name),
-    //       actions: <Widget>[
-    //         IconButton(
-    //           icon: Icon(Icons.share),
-    //           onPressed: () {},
-    //         ),
-    //       ],
-    //     ),
-    //     path: pathPDF);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(name!),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.share),
+            onPressed: () {},
+          ),
+        ],
+      ),
+      body: PDFView(filePath: pathPDF),
+    );
   }
 }

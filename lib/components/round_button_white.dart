@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class RoundButtonWhite extends StatelessWidget {
-  String textval;
-  double height;
-  double width;
-  Function onpress;
+  String? textval;
+  double? height;
+  double? width;
+  Function? onpress;
 
 
   RoundButtonWhite({this.textval, this.height, this.width,this.onpress});
@@ -22,11 +22,11 @@ class RoundButtonWhite extends StatelessWidget {
       ),
       child: MaterialButton(
         splashColor: Colors.transparent,
-        onPressed: onpress,
+        onPressed: onpress as void Function()?,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(100),
         ),
-        child: Text(textval, style: TextStyleFormBlack),
+        child: Text(textval!, style: TextStyleFormBlack),
       ),
     );
   }

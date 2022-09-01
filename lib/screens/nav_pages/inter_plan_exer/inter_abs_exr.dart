@@ -175,7 +175,7 @@ class _inter_abs_exrState extends State<inter_abs_exr> {
                 padding: EdgeInsets.all(10),
                 children: [
                   for(int i=0;i<interabs.length;i++)
-                    ExerCard(title: interabs[i]['title'],req:interabs[i]['reqtype']=='time'? "00:"+interabs[i]['req']:interabs[i]['req'],gifpath: interabs[i]['anim'],),
+                    ExerCard(title: interabs[i]['title'],req:interabs[i]['reqtype']=='time'? "00:"+interabs[i]['req']!:interabs[i]['req'],gifpath: interabs[i]['anim'],),
                   SizedBox(height: 10,),
                   RoundButton(textval: "START EXERCISE",onpress: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>StartExer(interabs,kcal,exrtime,exrtitle)));

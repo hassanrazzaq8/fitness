@@ -1,5 +1,4 @@
 import 'package:fitnessapp/components/plan_cards.dart';
-import 'package:fitnessapp/components/constants.dart';
 import 'package:fitnessapp/screens/nav_pages/beginner_plan_exr/big_abs_exr.dart';
 import 'package:fitnessapp/screens/nav_pages/beginner_plan_exr/big_arm_exr.dart';
 import 'package:fitnessapp/screens/nav_pages/beginner_plan_exr/big_chest_exr.dart';

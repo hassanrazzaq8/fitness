@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitnessapp/components/constants.dart';
+import 'package:fitnessapp/screens/login.dart';
 import 'package:fitnessapp/screens/nav_pages/friends.dart';
 import 'package:fitnessapp/screens/nav_pages/instructor_page.dart';
 import 'package:fitnessapp/screens/nav_pages/tracking_page.dart';
@@ -20,8 +21,6 @@ class NavDrawer extends StatefulWidget {
 }
 
 class _NavDrawerState extends State<NavDrawer> {
-
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -39,34 +38,31 @@ class _NavDrawerState extends State<NavDrawer> {
 }
 
 class UserHeader extends StatefulWidget {
-
   @override
   _UserHeaderState createState() => _UserHeaderState();
 }
 
 class _UserHeaderState extends State<UserHeader> {
-  FirebaseAuth auth;
+  late FirebaseAuth auth;
 
   String userid = "id";
-
 
   Future<void> getCurrentUser() async {
     auth = FirebaseAuth.instance;
     try {
-      final user = await auth.currentUser;
+      final user = auth.currentUser;
       if (user != null) {
         setState(() {
           userid = user.email.toString().trim();
         });
       }
     } on Exception catch (e) {
-      // TODO
+      print(e);
     }
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getCurrentUser();
   }
@@ -119,7 +115,8 @@ class draweritems extends StatelessWidget {
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
             Navigator.of(context).pop();
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>DietPage()));
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => DietPage()));
           },
         ),
         ListTile(
@@ -128,8 +125,11 @@ class draweritems extends StatelessWidget {
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
             Navigator.of(context).pop();
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (BuildContext context) => ProfilePage()));
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (BuildContext context) => ProfilePage(),
+              ),
+            );
           },
         ),
         ListTile(
@@ -210,6 +210,21 @@ class draweritems extends StatelessWidget {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (BuildContext context) => GoogleFitpage(),
+              ),
+            );
+          },
+        ),
+        ListTile(
+          title: Text("Logout"),
+          trailing: Icon(
+            Icons.logout,
+          ),
+          onTap: () {
+            FirebaseAuth.instance.signOut();
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => LoginPage(),
               ),
             );
           },

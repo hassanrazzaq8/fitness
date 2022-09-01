@@ -33,12 +33,12 @@ class _RunningPageState extends State<RunningPage> {
   double getkm = 0.0;
   double getkcal = 0.0;
   int stepsgoal = 8000;
-  int todaySteps;
-  Stream<StepCount> _stepCountStream;
-  Stream<PedestrianStatus> _pedestrianStatusStream;
+  int? todaySteps;
+  late Stream<StepCount> _stepCountStream;
+  late Stream<PedestrianStatus> _pedestrianStatusStream;
   String _status = '?', _steps = '?';
 
-  FirebaseAuth auth;
+  late FirebaseAuth auth;
 
   String userid = "id";
 
@@ -108,7 +108,7 @@ class _RunningPageState extends State<RunningPage> {
   }
 
   Future<void> addUser_RunningData(
-      {String steps, String kcal, String distance, String time}) async {
+      {String? steps, String? kcal, String? distance, String? time}) async {
     final users = await FirebaseFirestore.instance
         .collection('userexer')
         .doc(userid)
@@ -127,12 +127,12 @@ class _RunningPageState extends State<RunningPage> {
   }
 
   //Get Today Steps
-  Future<int> getTodaySteps(String getsteps) async {
+  Future<int?> getTodaySteps(String getsteps) async {
     int value = int.parse(getsteps);
     // This is where we'll write our logic
     print("******" + value.toString());
     int savedStepsCountKey = 999999;
-    int savedStepsCount = stepsBox.get(savedStepsCountKey, defaultValue: 0);
+    int savedStepsCount = stepsBox.get(savedStepsCountKey, defaultValue: 0)!;
     print("savedsteps:  " + savedStepsCount.toString());
 
     if (value < savedStepsCount) {
@@ -146,7 +146,7 @@ class _RunningPageState extends State<RunningPage> {
     print(todayDayNo);
     // load the last day saved using a package of your choice here
     int lastDaySavedKey = 888888;
-    int lastDaySaved = stepsBox.get(lastDaySavedKey, defaultValue: 0);
+    int? lastDaySaved = stepsBox.get(lastDaySavedKey, defaultValue: 0);
     print("lastdasaved: " + lastDaySaved.toString());
     // When the day changes, reset the daily steps count
     // and Update the last day saved as the day changes.
@@ -157,7 +157,7 @@ class _RunningPageState extends State<RunningPage> {
       lastDaySaved = stepsBox.get(lastDaySavedKey, defaultValue: 0);
     }
 
-    if (lastDaySaved < todayDayNo) {
+    if (lastDaySaved! < todayDayNo) {
       setState(() {
         int getfinalsteps = value - savedStepsCount;
 
@@ -194,13 +194,13 @@ class _RunningPageState extends State<RunningPage> {
       todaySteps = value - savedStepsCount;
 
       //percentage for circularpercentindcator
-      perc = todaySteps / stepsgoal;
+      perc = todaySteps! / stepsgoal;
 
       //StepstoKM
-      getkm = todaySteps / 1312.33595801;
+      getkm = todaySteps! / 1312.33595801;
 
       //StepstoKcal
-      getkcal = todaySteps * 0.04;
+      getkcal = todaySteps! * 0.04;
     });
 
     //for resetting hive values

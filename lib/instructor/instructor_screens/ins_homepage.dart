@@ -2,7 +2,6 @@ import 'package:fitnessapp/Instructor/instructor_screens/ins_trainee.dart';
 import 'package:fitnessapp/components/constants.dart';
 import 'package:fitnessapp/instructor/ins_nav_drawer.dart';
 import 'package:fitnessapp/instructor/instructor_screens/ins_profile.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class InsHomePage extends StatefulWidget {
@@ -94,9 +93,9 @@ class _InsHomePageState extends State<InsHomePage> {
   }
 
   GestureDetector trainertabs(
-      {String imgpath, String label, Function onpress}) {
+      {required String imgpath, required String label, Function? onpress}) {
     return GestureDetector(
-      onTap: onpress,
+      onTap: onpress as void Function()?,
       child: Container(
         padding: EdgeInsets.all(10),
         alignment: Alignment.bottomLeft,

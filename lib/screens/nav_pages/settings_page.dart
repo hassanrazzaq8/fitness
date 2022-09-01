@@ -17,8 +17,8 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  FlutterLocalNotificationsPlugin fltrnotifcation;
-  bool isSwitch;
+  late FlutterLocalNotificationsPlugin fltrnotifcation;
+  bool? isSwitch;
   Box<bool> dailynotifyBox = Hive.box('notify');
   int dailynotifykey = 100;
 
@@ -37,7 +37,7 @@ class _SettingsPageState extends State<SettingsPage> {
     super.initState();
   }
 
-  Future notificationSelected(String payload) async {
+  Future notificationSelected(String? payload) async {
     await Navigator.push(
       context,
       MaterialPageRoute<void>(builder: (context) => HomePage()),
@@ -96,11 +96,11 @@ class _SettingsPageState extends State<SettingsPage> {
                     style: TextStyleMediumBlack,
                   ),
                   Switch(
-                      value: isSwitch,
+                      value: isSwitch!,
                       onChanged: (bool val) {
                         setState(() {
                           isSwitch = val;
-                          if (isSwitch) {
+                          if (isSwitch!) {
                             _showNotificatiion();
                           } else {
                             FlutterLocalNotificationsPlatform.instance

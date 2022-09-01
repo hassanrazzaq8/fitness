@@ -1,22 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitnessapp/components/constants.dart';
-import 'package:fitnessapp/screens/nav_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+class UserChatscreen extends StatefulWidget {
+  final String recvremail;
 
-class ChatScreen extends StatefulWidget {
-  String? recvremail;
-
-
-  ChatScreen({this.recvremail});
+  UserChatscreen({required this.recvremail});
 
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  _UserChatscreenState createState() => _UserChatscreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _UserChatscreenState extends State<UserChatscreen> {
   String currentuser = FirebaseAuth.instance.currentUser!.email.toString();
   String? msg;
   final textfieldcontroller = TextEditingController();
@@ -26,37 +23,51 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Minerva Chat'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => VideoCall(),
+              //   ),
+              // );
+            },
+            icon: Icon(Icons.video_camera_front),
+          ),
+        ],
       ),
-      drawer: NavDrawer(),
       body: Container(
         padding: EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             StreamBuilder(
-              stream:
-              FirebaseFirestore.instance.collection('chats')
-                  .doc(widget.recvremail!+"_"+currentuser)
-                  .collection('msgs').orderBy('timestamp').snapshots(),
+              stream: FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(currentuser)
+                  .collection('chats')
+                  .doc(currentuser + " and " + widget.recvremail)
+                  .collection('msgs')
+                  .orderBy('timestamp')
+                  .snapshots(),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasData) {
                   final messages = snapshot.data!.docs.reversed;
                   List<msgbubble> messageWidgets = [];
                   for (var msg in messages) {
-                    if(msg.data() is Map){
-                      final msgtext = (msg.data() as Map)['text'];
-                      final msgSender = (msg.data() as Map)['sender'];
-                      final msgtime = (msg.data() as Map)['time'];
+                    final msgtext = msg['text'];
+                    final msgSender = msg['sender'];
+                    final msgtime = msg['time'];
 
-                      final messagebubble = msgbubble(
-                        text: msgtext,
-                        sender: msgSender,
-                        time: msgtime,
-                        isMe: currentuser == msgSender,
-                      );
+                    final messagebubble = msgbubble(
+                      text: msgtext,
+                      sender: msgSender,
+                      time: msgtime,
+                      isMe: currentuser == msgSender,
+                    );
 
-                      messageWidgets.add(messagebubble);
-                    }
+                    messageWidgets.add(messagebubble);
                   }
                   return Expanded(
                     child: ListView(
@@ -129,16 +140,19 @@ class _ChatScreenState extends State<ChatScreen> {
     String formattedtime = formattertime.format(now);
 
     await FirebaseFirestore.instance
+        .collection('users')
+        .doc(currentuser)
         .collection('chats')
-        .doc(widget.recvremail!+"_"+currentuser)
+        .doc(currentuser + " and " + widget.recvremail)
         .collection('msgs')
         .doc()
         .set({
-      'sender': currentuser,
-      'text': text,
-      'timestamp': FieldValue.serverTimestamp(),
-      'time': formattedtime.toString(),
-    })
+          'sender': currentuser,
+          'text': text,
+          // 'date': formattedDate.toString(),
+          'time': formattedtime.toString(),
+          'timestamp': FieldValue.serverTimestamp(),
+        })
         .then((value) => print('Sent text'))
         .catchError((error) => print("Failed to sent text: $error"));
   }
@@ -150,7 +164,7 @@ class msgbubble extends StatelessWidget {
   String? time;
   bool? isMe;
 
-  msgbubble({this.text, this.sender,this.time, this.isMe});
+  msgbubble({this.text, this.sender, this.time, this.isMe});
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +172,7 @@ class msgbubble extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: Column(
         crossAxisAlignment:
-        isMe! ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            isMe! ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           Text(
             sender!,
@@ -167,15 +181,15 @@ class msgbubble extends StatelessWidget {
           Material(
             borderRadius: isMe!
                 ? BorderRadius.only(
-              topLeft: Radius.circular(30),
-              bottomLeft: Radius.circular(30),
-              bottomRight: Radius.circular(30),
-            )
+                    topLeft: Radius.circular(30),
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                  )
                 : BorderRadius.only(
-              topRight: Radius.circular(30),
-              bottomLeft: Radius.circular(30),
-              bottomRight: Radius.circular(30),
-            ),
+                    topRight: Radius.circular(30),
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                  ),
             elevation: 5.0,
             color: isMe! ? Colors.indigo : Colors.grey[100],
             child: Container(
@@ -187,15 +201,22 @@ class msgbubble extends StatelessWidget {
                   Text(
                     text!,
                     style: TextStyle(
-                        fontSize: 15, color: isMe! ? Colors.white : Colors.black),
+                        fontSize: 15,
+                        color: isMe! ? Colors.white : Colors.black),
                   ),
-                  SizedBox(width: 5,),
-                  Text(time!,style: TextStyle(fontSize: 10,color: isMe!? Colors.grey[200] : Colors.black87),)
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    time!,
+                    style: TextStyle(
+                        fontSize: 10,
+                        color: isMe! ? Colors.grey[200] : Colors.black87),
+                  )
                 ],
               ),
             ),
           ),
-
         ],
       ),
     );

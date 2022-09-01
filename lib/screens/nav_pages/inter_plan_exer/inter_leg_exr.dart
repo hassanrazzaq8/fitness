@@ -243,7 +243,7 @@ class _inter_leg_exrState extends State<inter_leg_exr> {
                 padding: EdgeInsets.all(10),
                 children: [
                   for(int i=0;i<interleg.length;i++)
-                    ExerCard(title: interleg[i]['title'],req:interleg[i]['reqtype']=='time'? "00:"+interleg[i]['req']:interleg[i]['req'],gifpath: interleg[i]['anim'],),
+                    ExerCard(title: interleg[i]['title'],req:interleg[i]['reqtype']=='time'? "00:"+interleg[i]['req']!:interleg[i]['req'],gifpath: interleg[i]['anim'],),
                   RoundButton(textval: "START EXERCISE",onpress: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>StartExer(interleg,kcal,exrtime,exrtitle)));
                   },)

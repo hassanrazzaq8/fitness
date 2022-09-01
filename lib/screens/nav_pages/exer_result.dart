@@ -3,24 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ExesiceReresult extends StatefulWidget {
-  String getexerkcal;
-  String getexercount;
+  final String getexerkcal;
+  final String getexercount;
 
-
-  ExesiceReresult(this.getexerkcal,this.getexercount);
-
-
+  ExesiceReresult(this.getexerkcal, this.getexercount);
 
   @override
-  _ExesiceReresultState createState() => _ExesiceReresultState(getexerkcal,getexercount);
+  _ExesiceReresultState createState() =>
+      _ExesiceReresultState(getexerkcal, getexercount);
 }
 
 class _ExesiceReresultState extends State<ExesiceReresult> {
   String exerkcal;
   String exercount;
 
-
-  _ExesiceReresultState(this.exerkcal,this.exercount);
+  _ExesiceReresultState(this.exerkcal, this.exercount);
 
   @override
   Widget build(BuildContext context) {

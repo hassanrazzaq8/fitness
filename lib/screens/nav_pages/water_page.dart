@@ -13,16 +13,16 @@ class WaterPage extends StatefulWidget {
 
 class _WaterPageState extends State<WaterPage> {
   int stepsgoal = 10;
-  double perc = 0.0;
-  int todaySteps;
-  int glasses = 0;
+  double? perc = 0.0;
+  int? todaySteps;
+  int? glasses = 0;
   bool done = false;
 
   bool daypass = false;
   String _dayPassGlass = "";
-  int _dayPassTime;
+  int? _dayPassTime;
 
-  SharedPreferences _preferences;
+  late SharedPreferences _preferences;
 
   void waterTakeHandler() async {
     _preferences = await SharedPreferences.getInstance();
@@ -36,9 +36,9 @@ class _WaterPageState extends State<WaterPage> {
         perc = 0;
       } else {
         if (_preferences.get("glasses") != null)
-          glasses = _preferences.get("glasses");
+          glasses = _preferences.get("glasses") as int?;
         if (_preferences.get("percentage") != null)
-          perc = _preferences.get("percentage");
+          perc = _preferences.get("percentage") as double?;
       }
     });
   }
@@ -92,12 +92,12 @@ class _WaterPageState extends State<WaterPage> {
                     onTap: () {
                       setState(() {
                         if (done == false) {
-                          perc > 0.99 ? done = true : glasses = glasses + 1;
+                          perc! > 0.99 ? done = true : glasses = glasses! + 1;
                           print(glasses.toString());
-                          _preferences.setInt("glasses", glasses);
-                          perc > 0.99 ? done = true : perc = perc + 0.1;
+                          _preferences.setInt("glasses", glasses!);
+                          perc! > 0.99 ? done = true : perc = perc! + 0.1;
                           print(perc.toString());
-                          _preferences.setDouble("percentage", perc);
+                          _preferences.setDouble("percentage", perc!);
                           _preferences.setInt(
                               "day", DateTime.now().day.toInt() + 1);
                         } else {
@@ -108,7 +108,7 @@ class _WaterPageState extends State<WaterPage> {
                     child: CircularPercentIndicator(
                       radius: 200.0,
                       lineWidth: 15.0,
-                      percent: perc,
+                      percent: perc!,
                       progressColor: Colors.blue[500],
                       center: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

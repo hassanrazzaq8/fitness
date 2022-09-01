@@ -125,7 +125,7 @@ class _inter_chest_exrState extends State<inter_chest_exr> {
                 padding: EdgeInsets.all(10),
                 children: [
                   for(int i=0;i<interchest.length;i++)
-                    ExerCard(title: interchest[i]['title'],req:interchest[i]['reqtype']=='time'? "00:"+interchest[i]['req']:interchest[i]['req'],gifpath: interchest[i]['anim'],),
+                    ExerCard(title: interchest[i]['title'],req:interchest[i]['reqtype']=='time'? "00:"+interchest[i]['req']!:interchest[i]['req'],gifpath: interchest[i]['anim'],),
                   RoundButton(textval: "START EXERCISE",onpress: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>StartExer(interchest,kcal,exrtime,exrtitle)));
                   },)

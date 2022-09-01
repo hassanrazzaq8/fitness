@@ -1,11 +1,9 @@
 import 'package:fitnessapp/components/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:async';
 import 'package:health/health.dart';
 import 'package:fitnessapp/screens/nav_drawer.dart';
-
 import 'gfit_calories.dart';
 import 'gfit_steps.dart';
 
@@ -262,17 +260,17 @@ class _GoogleFitpageState extends State<GoogleFitpage> {
 }
 
 class gfitcards extends StatelessWidget {
-  String title;
-  IconData icondata;
-  Color iconcolor;
-  Function ontap;
+  String? title;
+  IconData? icondata;
+  Color? iconcolor;
+  Function? ontap;
 
   gfitcards({this.title, this.icondata, this.iconcolor, this.ontap});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ontap,
+      onTap: ontap as void Function()?,
       child: Container(
         margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
@@ -299,7 +297,7 @@ class gfitcards extends StatelessWidget {
               height: 10,
             ),
             Text(
-              title,
+              title!,
               style: TextStyleMediumBlack,
             )
           ],

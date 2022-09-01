@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 
 class StartIndexr extends StatefulWidget {
-  String animpath;
-  String exrtitle;
-  String exrreqtype;
-  String exrreq;
+  String? animpath;
+  String? exrtitle;
+  String? exrreqtype;
+  String? exrreq;
 
   StartIndexr({this.animpath, this.exrtitle, this.exrreqtype, this.exrreq});
 
@@ -18,10 +18,10 @@ class StartIndexr extends StatefulWidget {
 }
 
 class _StartIndexrState extends State<StartIndexr> {
-  String animpath;
-  String exrtitle;
-  String exrreqtype;
-  String exrreq;
+  String? animpath;
+  String? exrtitle;
+  String? exrreqtype;
+  String? exrreq;
 
   _StartIndexrState(this.animpath, this.exrtitle, this.exrreqtype, this.exrreq);
   int endTime = 0;
@@ -40,7 +40,7 @@ class _StartIndexrState extends State<StartIndexr> {
                 padding: EdgeInsets.all(15),
                 color: Colors.white,
                 child: Center(
-                  child: Image.asset(animpath),
+                  child: Image.asset(animpath!),
                 ),
               ),
             ),
@@ -54,7 +54,7 @@ class _StartIndexrState extends State<StartIndexr> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        exrtitle,
+                        exrtitle!,
                         style: TextStyleHeading,
                         textAlign: TextAlign.center,
                       ),
@@ -70,7 +70,7 @@ class _StartIndexrState extends State<StartIndexr> {
                         // ),
                         if (exrreqtype == 'sets') // to check time  or sets
                           Text(
-                            exrreq,
+                            exrreq!,
                             style: TextStyleHeading,
                             textAlign: TextAlign.center,
                           ),

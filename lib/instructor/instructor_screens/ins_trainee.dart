@@ -1,8 +1,6 @@
-
 import 'package:fitnessapp/components/constants.dart';
 import 'package:fitnessapp/instructor/ins_nav_drawer.dart';
 import 'package:fitnessapp/instructor/instructor_screens/trainee_profile.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -25,8 +23,10 @@ class _InsTraineePageState extends State<InsTraineePage> {
               child: InkWell(
                 splashColor: Colors.white.withOpacity(0.2),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => TraineeProfile()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TraineeProfile()));
                 },
                 child: Icon(FontAwesomeIcons.userPlus),
               ),
@@ -71,8 +71,8 @@ class ProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => TraineeProfile()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => TraineeProfile()));
       },
       child: Card(
         shape: RoundedRectangleBorder(

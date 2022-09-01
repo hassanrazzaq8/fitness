@@ -35,7 +35,7 @@ class _StartExerState extends State<StartExer> {
   int index = 0;
   int endTime = 0;
   bool check = false;
-  FirebaseAuth auth;
+  late FirebaseAuth auth;
   String userid = "id";
 
   Future<void> getCurrentUser() async {
@@ -53,7 +53,7 @@ class _StartExerState extends State<StartExer> {
   }
 
   Future<void> addUser_WorkoutData(
-      {String title, String exrtime, String kcal, String date}) async {
+      {String? title, String? exrtime, String? kcal, String? date}) async {
     final users = await FirebaseFirestore.instance
         .collection('userexer')
         .doc(userid)

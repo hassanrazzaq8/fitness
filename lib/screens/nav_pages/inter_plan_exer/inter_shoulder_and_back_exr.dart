@@ -144,7 +144,7 @@ class _inter_shoulder_and_back_exrState extends State<inter_shoulder_and_back_ex
                 padding: EdgeInsets.all(10),
                 children: [
                   for(int i=0;i<inter_shoulder_back.length;i++)
-                    ExerCard(title: inter_shoulder_back[i]['title'],req:inter_shoulder_back[i]['reqtype']=='time'? "00:"+inter_shoulder_back[i]['req']:inter_shoulder_back[i]['req'],gifpath: inter_shoulder_back[i]['anim'],),
+                    ExerCard(title: inter_shoulder_back[i]['title'],req:inter_shoulder_back[i]['reqtype']=='time'? "00:"+inter_shoulder_back[i]['req']!:inter_shoulder_back[i]['req'],gifpath: inter_shoulder_back[i]['anim'],),
 
                   RoundButton(textval: "START EXERCISE",onpress: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>StartExer(inter_shoulder_back,kcal,exrtime,exrtitle)));

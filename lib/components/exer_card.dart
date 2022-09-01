@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 
 class ExerCard extends StatelessWidget {
 
-  String title;
-  String req;
-  String gifpath;
-  Function ontap;
+  String? title;
+  String? req;
+  String? gifpath;
+  Function? ontap;
 
   ExerCard({this.title, this.req, this.gifpath,this.ontap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ontap,
+      onTap: ontap as void Function()?,
       child: Card(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15))),
@@ -29,7 +29,7 @@ class ExerCard extends StatelessWidget {
                 flex: 4,
                 child: Container(
                     color: Colors.white,
-                    child: Image.asset(gifpath)),
+                    child: Image.asset(gifpath!)),
               ),
               Expanded(
                 flex: 6,
@@ -41,11 +41,11 @@ class ExerCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        title,
+                        title!,
                         style: TextStyleFormBlackBold,
                       ),
                       Text(
-                        req,
+                        req!,
                         style: TextStyleFormBlack,
                         textAlign: TextAlign.left,
                       )

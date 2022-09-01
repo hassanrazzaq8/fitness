@@ -3,11 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitnessapp/Instructor/ins_login.dart';
 import 'package:fitnessapp/components/constants.dart';
 import 'package:fitnessapp/instructor/instructor_screens/ins_homepage.dart';
-import 'package:fitnessapp/main.dart';
 import 'package:flutter/material.dart';
 import 'package:fitnessapp/components/form_text_field.dart';
 import 'package:fitnessapp/components/round_button.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class InsSignUpPage extends StatefulWidget {
   @override
@@ -16,9 +15,9 @@ class InsSignUpPage extends StatefulWidget {
 
 class _InsSignUpPageState extends State<InsSignUpPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  String email, pass, name, age, contact;
-  FirebaseAuth auth;
-  FirebaseFirestore firestore;
+  String? email, pass, name, age, contact;
+  late FirebaseAuth auth;
+  late FirebaseFirestore firestore;
   bool loading = false;
 
   @override
@@ -119,8 +118,8 @@ class _InsSignUpPageState extends State<InsSignUpPage> {
                                   try {
                                     final newuser = await auth
                                         .createUserWithEmailAndPassword(
-                                      email: email,
-                                      password: pass,
+                                      email: email!,
+                                      password: pass!,
                                     );
                                     if (newuser != null) {
                                       addInsData();
@@ -142,7 +141,7 @@ class _InsSignUpPageState extends State<InsSignUpPage> {
                                     if (e.code == 'weak-password') {
                                       final snackBar = SnackBar(
                                           content: Text('Weak Password'));
-                                      _scaffoldKey.currentState
+                                      _scaffoldKey.currentState!
                                           .showSnackBar(snackBar);
                                     } else if (e.code ==
                                         'email-already-in-use') {
@@ -151,7 +150,7 @@ class _InsSignUpPageState extends State<InsSignUpPage> {
                                       final snackBar = SnackBar(
                                           content: Text(
                                               'The account already exists for that email.'));
-                                      _scaffoldKey.currentState
+                                      _scaffoldKey.currentState!
                                           .showSnackBar(snackBar);
                                     }
                                   } catch (e) {
@@ -200,18 +199,21 @@ class _InsSignUpPageState extends State<InsSignUpPage> {
   }
 
   Future<void> addInsData() async {
-    final users = await firestore.collection('instructor').doc(email).set( {'id': email,
-      'email': email,
-      'name': name,
-      'age': age,
-      'contact': contact,
-      'type' : 'instructor',
-      'image': 'N/A',
-    })
+    final users = await firestore
+        .collection('instructor')
+        .doc(email)
+        .set({
+          'id': email,
+          'email': email,
+          'name': name,
+          'age': age,
+          'contact': contact,
+          'type': 'instructor',
+          'image': 'N/A',
+        })
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
 
     return users;
   }
-
 }

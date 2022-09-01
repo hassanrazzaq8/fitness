@@ -13,7 +13,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
-  FirebaseAuth auth;
+  late FirebaseAuth auth;
 
 
 

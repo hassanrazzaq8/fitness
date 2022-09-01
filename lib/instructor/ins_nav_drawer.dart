@@ -1,8 +1,7 @@
 import 'package:fitnessapp/Instructor/instructor_screens/ins_homepage.dart';
 import 'package:fitnessapp/Instructor/instructor_screens/ins_trainee.dart';
 import 'package:fitnessapp/components/constants.dart';
-import 'package:fitnessapp/screens/nav_pages/friends.dart';
-import 'package:fitnessapp/screens/nav_pages/home_page.dart';
+
 import 'package:flutter/material.dart';
 
 import 'instructor_screens/ins_profile.dart';
@@ -31,7 +30,7 @@ class _InsNavDrawerState extends State<InsNavDrawer> {
 
 class UserHeader extends StatelessWidget {
   const UserHeader({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

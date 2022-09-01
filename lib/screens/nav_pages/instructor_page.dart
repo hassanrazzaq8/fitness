@@ -24,7 +24,7 @@ class _InstructorPageState extends State<InstructorPage> {
   Future<dynamic> checkIns() async {
     final DocumentReference document = FirebaseFirestore.instance
         .collection("users")
-        .doc(FirebaseAuth.instance.currentUser.email.toString())
+        .doc(FirebaseAuth.instance.currentUser!.email.toString())
         .collection('myinstructor')
         .doc();
     await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
@@ -54,7 +54,7 @@ class _InstructorPageState extends State<InstructorPage> {
         title: Text("Instructor"),
         actions: [
           haveins
-              ? null
+              ? CircularProgressIndicator()
               : Container(
                   padding: EdgeInsets.all(10),
                   child: Material(
@@ -63,9 +63,11 @@ class _InstructorPageState extends State<InstructorPage> {
                       splashColor: Colors.white.withOpacity(0.2),
                       onTap: () {
                         Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ReqInstructor()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ReqInstructor(),
+                          ),
+                        );
                       },
                       child: Icon(Icons.add),
                     ),
@@ -108,14 +110,15 @@ class _InstructorPageState extends State<InstructorPage> {
                   StreamBuilder(
                     stream: FirebaseFirestore.instance
                         .collection('users')
-                        .doc(FirebaseAuth.instance.currentUser.email.toString())
+                        .doc(
+                            FirebaseAuth.instance.currentUser!.email.toString())
                         .collection('myinstructor')
                         .snapshots(),
                     builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (snapshot.hasData) {
                         return Expanded(
                           child: ListView(
-                            children: snapshot.data.docs.map((document) {
+                            children: snapshot.data!.docs.map((document) {
                               return inscard(
                                 email: document['id'],
                               );
@@ -137,7 +140,7 @@ class _InstructorPageState extends State<InstructorPage> {
 }
 
 class inscard extends StatelessWidget {
-  String name, email;
+  String? name, email;
 
   inscard({this.name, this.email});
 
@@ -179,7 +182,7 @@ class inscard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(
-                          email,
+                          email!,
                           style: TextStyleFormBlack,
                         ),
                         ClipOval(
@@ -221,9 +224,9 @@ class inscard extends StatelessWidget {
 }
 
 class InsTrainerProfileCards extends StatelessWidget {
-  String title;
-  IconData icondata;
-  Function onpress;
+  String? title;
+  IconData? icondata;
+  Function? onpress;
 
   InsTrainerProfileCards({this.title, this.icondata, this.onpress});
 
@@ -238,7 +241,7 @@ class InsTrainerProfileCards extends StatelessWidget {
         elevation: 5.0,
         child: MaterialButton(
           elevation: 5.0,
-          onPressed: onpress,
+          onPressed: onpress as void Function()?,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
@@ -253,7 +256,7 @@ class InsTrainerProfileCards extends StatelessWidget {
                 width: 10,
               ),
               Text(
-                title,
+                title!,
                 style: TextStyleMedium,
               )
             ],
