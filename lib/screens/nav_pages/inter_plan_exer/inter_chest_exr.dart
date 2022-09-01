@@ -14,100 +14,156 @@ class _inter_chest_exrState extends State<inter_chest_exr> {
   String exrtime = '15 mins';
   String exrtitle = 'CHEST INTERMEDIATE';
 
-  var interchest= [
+  var interchest = [
     {
-      'title'  : 'JUMPING JACKS',
-      'req' : '30',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'time'
+      'title': 'JUMPING JACKS',
+      'req': '30',
+      'anim': 'images/gif/Jumping Jack.gif',
+      'reqtype': 'time'
     },
     {
-      'title'  : 'KNEE PUSH-UPS',
-      'req' : 'x12',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'INCLINE PUSH-UPS',
+      'req': 'x16',
+      'anim': 'images/gif/incline pushups.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'PUSH-UPS',
-      'req' : 'x12',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'PUSH-UPS',
+      'req': 'x10',
+      'anim': 'images/gif/push ups.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'WIDE ARM PUSH-UPS',
-      'req' : 'x16',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'WIDE ARM PUSH-UPS',
+      'req': 'x10',
+      'anim': 'images/gif/wide arm pushups-min.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'HINDU PUSH-UPS',
-      'req' : 'x10',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'INCLINE PUSH-UPS',
+      'req': 'x12',
+      'anim': 'images/gif/incline pushups.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'STAGGERED PUSH-UPS',
-      'req' : 'x12',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'WIDE ARM PUSH-UPS',
+      'req': 'x10',
+      'anim': 'images/gif/wide arm pushups-min.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'PUSH-UP & ROTATION',
-      'req' : 'x10',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
-    },
-
-    {
-      'title'  : 'KNEE PUSH-UPS',
-      'req' : 'x10',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'HINDU PUSH-UPS',
+      'req': 'x10',
+      'anim': 'images/gif/hindu push ups.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'HINDU PUSH-UPS',
-      'req' : 'x10',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'COBRA STRETCH',
+      'req': '20',
+      'anim': 'images/gif/chest pulse.gif',
+      'reqtype': 'time'
     },
     {
-      'title'  : 'DECLINE PUSH-UPS',
-      'req' : 'x12',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'CHEST STRETCH',
+      'req': '20',
+      'anim': 'images/gif/chest strecth.gif',
+      'reqtype': 'time'
     },
-    {
-      'title'  : 'STAGGERED PUSH-UPS',
-      'req' : 'x10',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
-    },
-    {
-      'title'  : 'SHOULDER PUSH-UPS',
-      'req' : '30',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'time'
-    },
-    {
-      'title'  : 'COBRA PUSH-UPS',
-      'req' : '30',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'time'
-    },
-    {
-      'title'  : 'CHEST PUSH-UPS',
-      'req' : '30',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'time'
-    },
+    // {
+    //   'title': 'JUMPING JACKS',
+    //   'req': '30',
+    //   'anim': 'images/jumping_jack2.gif',
+    //   'reqtype': 'time'
+    // },
+    // {
+    //   'title': 'KNEE PUSH-UPS',
+    //   'req': 'x12',
+    //   'anim': 'images/jumping_jack2.gif',
+    //   'reqtype': 'sets'
+    // },
+    // {
+    //   'title': 'PUSH-UPS',
+    //   'req': 'x12',
+    //   'anim': 'images/jumping_jack2.gif',
+    //   'reqtype': 'sets'
+    // },
+    // {
+    //   'title': 'WIDE ARM PUSH-UPS',
+    //   'req': 'x16',
+    //   'anim': 'images/jumping_jack2.gif',
+    //   'reqtype': 'sets'
+    // },
+    // {
+    //   'title': 'HINDU PUSH-UPS',
+    //   'req': 'x10',
+    //   'anim': 'images/jumping_jack2.gif',
+    //   'reqtype': 'sets'
+    // },
+    // {
+    //   'title': 'STAGGERED PUSH-UPS',
+    //   'req': 'x12',
+    //   'anim': 'images/jumping_jack2.gif',
+    //   'reqtype': 'sets'
+    // },
+    // {
+    //   'title': 'PUSH-UP & ROTATION',
+    //   'req': 'x10',
+    //   'anim': 'images/jumping_jack2.gif',
+    //   'reqtype': 'sets'
+    // },
+    // {
+    //   'title': 'KNEE PUSH-UPS',
+    //   'req': 'x10',
+    //   'anim': 'images/jumping_jack2.gif',
+    //   'reqtype': 'sets'
+    // },
+    // {
+    //   'title': 'HINDU PUSH-UPS',
+    //   'req': 'x10',
+    //   'anim': 'images/jumping_jack2.gif',
+    //   'reqtype': 'sets'
+    // },
+    // {
+    //   'title': 'DECLINE PUSH-UPS',
+    //   'req': 'x12',
+    //   'anim': 'images/jumping_jack2.gif',
+    //   'reqtype': 'sets'
+    // },
+    // {
+    //   'title': 'STAGGERED PUSH-UPS',
+    //   'req': 'x10',
+    //   'anim': 'images/jumping_jack2.gif',
+    //   'reqtype': 'sets'
+    // },
+    // {
+    //   'title': 'SHOULDER PUSH-UPS',
+    //   'req': '30',
+    //   'anim': 'images/jumping_jack2.gif',
+    //   'reqtype': 'time'
+    // },
+    // {
+    //   'title': 'COBRA PUSH-UPS',
+    //   'req': '30',
+    //   'anim': 'images/jumping_jack2.gif',
+    //   'reqtype': 'time'
+    // },
+    // {
+    //   'title': 'CHEST PUSH-UPS',
+    //   'req': '30',
+    //   'anim': 'images/jumping_jack2.gif',
+    //   'reqtype': 'time'
+    // },
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(title: Text("CHEST INTERMEDIATE"),backgroundColor: Colors.transparent,elevation: 0,),
-      drawer: NavDrawer(),
+      appBar: AppBar(
+        title: Text("CHEST INTERMEDIATE"),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: Column(
         children: [
           Container(
@@ -115,21 +171,33 @@ class _inter_chest_exrState extends State<inter_chest_exr> {
             width: double.infinity,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("images/chest_ex.jpg"),
-                  fit: BoxFit.cover,
-                )),
+              image: AssetImage("images/chest_ex.jpg"),
+              fit: BoxFit.cover,
+            )),
           ),
           Expanded(
             child: Container(
               child: ListView(
                 padding: EdgeInsets.all(10),
                 children: [
-                  for(int i=0;i<interchest.length;i++)
-                    ExerCard(title: interchest[i]['title'],req:interchest[i]['reqtype']=='time'? "00:"+interchest[i]['req']!:interchest[i]['req'],gifpath: interchest[i]['anim'],),
-                  RoundButton(textval: "START EXERCISE",onpress: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>StartExer(interchest,kcal,exrtime,exrtitle)));
-                  },)
-
+                  for (int i = 0; i < interchest.length; i++)
+                    ExerCard(
+                      title: interchest[i]['title'],
+                      req: interchest[i]['reqtype'] == 'time'
+                          ? "00:" + interchest[i]['req']
+                          : interchest[i]['req'],
+                      gifpath: interchest[i]['anim'],
+                    ),
+                  RoundButton(
+                    textval: "START EXERCISE",
+                    onpress: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => StartExer(
+                                  interchest, kcal, exrtime, exrtitle)));
+                    },
+                  )
                 ],
               ),
             ),

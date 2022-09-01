@@ -19,7 +19,6 @@ class _interplanState extends State<interplan> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
-      drawer: NavDrawer(),
       appBar: AppBar(
         title: Text("Intermediate Plan"),
         backgroundColor: Colors.transparent,

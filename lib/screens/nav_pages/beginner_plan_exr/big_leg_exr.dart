@@ -10,149 +10,124 @@ class big_leg_exr extends StatefulWidget {
 }
 
 class _big_leg_exrState extends State<big_leg_exr> {
-
   String kcal = '146.2';
   String exrtime = '26 mins';
   String exrtitle = 'LEG BEGINNER';
 
-  var begleg= [
+  var begleg = [
     {
-      'title'  : 'SIDE HOP',
-      'req' : '30',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'time'
+      'title': 'SIDE HOP',
+      'req': '30',
+      'anim': 'images/gif/side hop.gif',
+      'reqtype': 'time'
     },
     {
-      'title'  : 'SQUATS',
-      'req' : 'x12',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'SQUATS',
+      'req': 'x12',
+      'anim': 'images/gif/squats.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'SQUATS',
-      'req' : 'x12',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'SQUATS',
+      'req': 'x12',
+      'anim': 'images/gif/squats.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'SIDE-LYING LEG LIFT LEFT',
-      'req' : 'x12',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'SIDE-LYING LEG LIFT LEFT',
+      'req': 'x12',
+      'anim': 'images/gif/side-lying leg lift left.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'SIDE-LYING LEG LIFT RIGHT',
-      'req' : 'x12',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'SIDE-LYING LEG LIFT RIGHT',
+      'req': 'x12',
+      'anim': 'images/gif/side-lying leg lift right.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'SIDE-LYING LEG LIFT LEFT',
-      'req' : 'x12',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'SIDE-LYING LEG LIFT LEFT',
+      'req': 'x12',
+      'anim': 'images/gif/side-lying leg lift left.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'SIDE-LYING LEG LIFT RIGHT',
-      'req' : 'x12',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'SIDE-LYING LEG LIFT RIGHT',
+      'req': 'x12',
+      'anim': 'images/gif/side-lying leg lift right.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'BACKWARD LUNGE',
-      'req' : 'x14',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'BACKWARD LUNGE',
+      'req': 'x14',
+      'anim': 'images/gif/backward lunges.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'BACKWARD LUNGE',
-      'req' : 'x14',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'BACKWARD LUNGE',
+      'req': 'x14',
+      'anim': 'images/gif/backward lunges.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'DONKEY KICKS LEFT',
-      'req' : 'x16',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'LEFT QUAD STRETCH WITH WALL',
+      'req': '30',
+      'anim': 'images/gif/calf stretch left.gif',
+      'reqtype': 'time'
     },
     {
-      'title'  : 'DONKEY KICKS RIGHT',
-      'req' : 'x16',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'RIGHT QUAD STRETCH WITH WALL',
+      'req': '30',
+      'anim': 'images/gif/calf stretch right.gif',
+      'reqtype': 'time'
+    },
+    // {
+    //   'title': 'KNEE TO CHEST STRETCH LEFT',
+    //   'req': '30',
+    //   'anim': 'images/jumping_jack2.gif',
+    //   'reqtype': 'time'
+    // },
+    // {
+    //   'title': 'KNEE TO CHEST STRETCH RIGHT',
+    //   'req': '30',
+    //   'anim': 'images/jumping_jack2.gif',
+    //   'reqtype': 'time'
+    // },
+    {
+      'title': 'CALF RAISES',
+      'req': 'x12',
+      'anim': 'images/gif/calf raises.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'DONKEY KICKS LEFT',
-      'req' : 'x16',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'CALF RAISES',
+      'req': 'x12',
+      'anim': 'images/gif/calf raises.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'DONKEY KICKS RIGHT',
-      'req' : 'x16',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
+      'title': 'SUMO SQUAT CALF RAISES',
+      'req': 'x12',
+      'anim': 'images/gif/sumo squat calf raises.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'LEFT QUAD STRETCH WITH WALL',
-      'req' : '30',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'time'
+      'title': 'SUMO SQUAT CALF RAISES',
+      'req': 'x12',
+      'anim': 'images/gif/sumo squat calf raises.gif',
+      'reqtype': 'sets'
     },
     {
-      'title'  : 'RIGHT QUAD STRETCH WITH WALL',
-      'req' : '30',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'time'
+      'title': 'CALF STRETCH LEFT',
+      'req': '30',
+      'anim': 'images/gif/calf stretch left.gif',
+      'reqtype': 'time'
     },
     {
-      'title'  : 'KNEE TO CHEST STRETCH LEFT',
-      'req' : '30',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'time'
-    },
-    {
-      'title'  : 'KNEE TO CHEST STRETCH RIGHT',
-      'req' : '30',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'time'
-    },
-    {
-      'title'  : 'WALL CALF RAISES',
-      'req' : 'x12',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
-    },
-    {
-      'title'  : 'WALL CALF RAISES',
-      'req' : 'x12',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
-    },
-    {
-      'title'  : 'SUMO SQUAT CALF RAISES WITH WALL',
-      'req' : 'x12',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
-    },
-    {
-      'title'  : 'SUMO SQUAT CALF RAISES WITH WALL',
-      'req' : 'x12',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'sets'
-    },
-    {
-      'title'  : 'CALF STRETCH LEFT',
-      'req' : '30',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'time'
-    },
-    {
-      'title'  : 'CALF STRETCH RIGHT',
-      'req' : '30',
-      'anim'  : 'images/jumping_jack2.gif',
-      'reqtype':'time'
+      'title': 'CALF STRETCH RIGHT',
+      'req': '30',
+      'anim': 'images/gif/calf stretch right.gif',
+      'reqtype': 'time'
     },
   ];
 
@@ -160,8 +135,12 @@ class _big_leg_exrState extends State<big_leg_exr> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(title: Text("LEG"),backgroundColor: Colors.transparent,elevation: 0,),
-      drawer: NavDrawer(),
+      appBar: AppBar(
+        title: Text("LEG"),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      // drawer: NavDrawer(),
       body: Column(
         children: [
           Container(
@@ -169,20 +148,33 @@ class _big_leg_exrState extends State<big_leg_exr> {
             width: double.infinity,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("images/leg_ex.jpg"),
-                  fit: BoxFit.cover,
-                )),
+              image: AssetImage("images/leg_ex.jpg"),
+              fit: BoxFit.cover,
+            )),
           ),
           Expanded(
             child: Container(
               child: ListView(
                 padding: EdgeInsets.all(10),
                 children: [
-                  for(int i=0;i<begleg.length;i++)
-                    ExerCard(title: begleg[i]['title'],req:begleg[i]['reqtype']=='time'? "00:"+begleg[i]['req']!:begleg[i]['req'],gifpath: begleg[i]['anim'],),
-                  RoundButton(textval: "START EXERCISE",onpress: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>StartExer(begleg,kcal,exrtime,exrtitle)));
-                  },)
+                  for (int i = 0; i < begleg.length; i++)
+                    ExerCard(
+                      title: begleg[i]['title'],
+                      req: begleg[i]['reqtype'] == 'time'
+                          ? "00:" + begleg[i]['req']
+                          : begleg[i]['req'],
+                      gifpath: begleg[i]['anim'],
+                    ),
+                  RoundButton(
+                    textval: "START EXERCISE",
+                    onpress: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  StartExer(begleg, kcal, exrtime, exrtitle)));
+                    },
+                  )
                 ],
               ),
             ),

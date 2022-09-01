@@ -1,7 +1,13 @@
 import 'package:fitnessapp/components/plan_cards.dart';
 import 'package:fitnessapp/screens/nav_pages/adv_plan_exer/adv_abs_exr.dart';
 import 'package:fitnessapp/screens/nav_drawer.dart';
+import 'package:fitnessapp/screens/nav_pages/inter_plan_exer/inter_abs_exr.dart';
 import 'package:flutter/material.dart';
+
+import '../inter_plan_exer/inter_arm_exr.dart';
+import '../inter_plan_exer/inter_chest_exr.dart';
+import '../inter_plan_exer/inter_leg_exr.dart';
+import '../inter_plan_exer/inter_shoulder_and_back_exr.dart';
 
 class AdvPlan extends StatefulWidget {
   @override
@@ -14,7 +20,6 @@ class _AdvPlanState extends State<AdvPlan> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
-      drawer: NavDrawer(),
       appBar: AppBar(
         title: Text("Advance Plan"),
         backgroundColor: Colors.transparent,
@@ -50,7 +55,8 @@ class _AdvPlanState extends State<AdvPlan> {
                       ontap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => AdvAbsExr()),
+                          MaterialPageRoute(
+                              builder: (context) => inter_abs_exr()),
                         );
                       },
                     ),
@@ -62,10 +68,11 @@ class _AdvPlanState extends State<AdvPlan> {
                       color2: Colors.red,
                       color3: Colors.white,
                       ontap: () {
-//                        Navigator.push(
-//                          context,
-//                          MaterialPageRoute(builder: (context) => inter_chest_exr()),
-//                        );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => inter_chest_exr()),
+                        );
                       },
                     ),
                     //ARMS
@@ -76,10 +83,11 @@ class _AdvPlanState extends State<AdvPlan> {
                       color2: Colors.red,
                       color3: Colors.white,
                       ontap: () {
-//                        Navigator.push(
-//                          context,
-//                          MaterialPageRoute(builder: (context) => inter_arm_exr()),
-//                        );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => inter_arm_exr()),
+                        );
                       },
                     ),
                     PlanCards(
@@ -89,10 +97,11 @@ class _AdvPlanState extends State<AdvPlan> {
                       color2: Colors.red,
                       color3: Colors.white,
                       ontap: () {
-//                        Navigator.push(
-//                          context,
-//                          MaterialPageRoute(builder: (context) => inter_leg_exr()),
-//                        );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => inter_leg_exr()),
+                        );
                       },
                     ),
                     PlanCards(
@@ -102,10 +111,12 @@ class _AdvPlanState extends State<AdvPlan> {
                       color2: Colors.red,
                       color3: Colors.white,
                       ontap: () {
-//                        Navigator.push(
-//                          context,
-//                          MaterialPageRoute(builder: (context) => inter_shoulder_and_back_exr()),
-//                        );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  inter_shoulder_and_back_exr()),
+                        );
                       },
                     ),
                   ],

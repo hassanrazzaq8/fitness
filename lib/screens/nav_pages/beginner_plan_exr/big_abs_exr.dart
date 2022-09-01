@@ -5,6 +5,7 @@ import 'package:fitnessapp/screens/nav_pages/start_exer.dart';
 import 'package:fitnessapp/screens/nav_drawer.dart';
 import 'package:fitnessapp/screens/start_ind_exr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gifimage/flutter_gifimage.dart';
 
 class BigAbsExr extends StatefulWidget {
   @override
@@ -20,97 +21,97 @@ class _BigAbsExrState extends State<BigAbsExr> {
     {
       'title': 'JUMPING JACKS',
       'req': '20',
-      'anim': 'images/jumping_jack2.gif',
+      'anim': 'images/gif/Jumping Jack.gif',
       'reqtype': 'time'
     },
     {
       'title': 'ABDOMINAL CRUNCHES',
       'req': 'x16',
-      'anim': 'images/jumping_jack2.gif',
+      'anim': 'images/gif/Abdominal crunches.gif',
       'reqtype': 'sets'
     },
     {
       'title': 'RUSSSIAN TWIST',
       'req': 'x20',
-      'anim': 'images/jumping_jack2.gif',
+      'anim': 'images/gif/russian twist.gif',
       'reqtype': 'sets'
     },
     {
       'title': 'MOUNTAIN CLIMBER',
       'req': 'x16',
-      'anim': 'images/jumping_jack2.gif',
+      'anim': 'images/gif/mountain climber.gif',
       'reqtype': 'sets'
     },
     {
       'title': 'HEEL TOUCH',
       'req': 'x20',
-      'anim': 'images/jumping_jack2.gif',
+      'anim': 'images/gif/inchworms.gif',
       'reqtype': 'sets'
     },
     {
       'title': 'LEG RAISES',
       'req': 'x16',
-      'anim': 'images/jumping_jack2.gif',
+      'anim': 'images/gif/leg Rasises.gif',
       'reqtype': 'sets'
     },
     {
       'title': 'PLANK',
       'req': '20',
-      'anim': 'images/jumping_jack2.gif',
+      'anim': 'images/gif/plank.gif',
       'reqtype': 'time'
     },
     {
       'title': 'ABDOMINAL CRUNCHES',
       'req': 'x12',
-      'anim': 'images/jumping_jack2.gif',
+      'anim': 'images/gif/Abdominal crunches.gif',
       'reqtype': 'sets'
     },
     {
       'title': 'RUSSSIAN TWIST',
       'req': 'x32',
-      'anim': 'images/jumping_jack2.gif',
+      'anim': 'images/gif/russian twist.gif',
       'reqtype': 'sets'
     },
     {
       'title': 'MOUNTAIN CLIMBER',
       'req': 'x12',
-      'anim': 'images/jumping_jack2.gif',
+      'anim': 'images/gif/mountain climber.gif',
       'reqtype': 'sets'
     },
     {
       'title': 'HEEL TOUCH',
       'req': 'x20',
-      'anim': 'images/jumping_jack2.gif',
+      'anim': 'images/gif/inchworms.gif',
       'reqtype': 'sets'
     },
     {
       'title': 'LEG RAISES',
       'req': 'x14',
-      'anim': 'images/jumping_jack2.gif',
+      'anim': 'images/gif/leg Rasises.gif',
       'reqtype': 'sets'
     },
     {
       'title': 'PLANK',
       'req': '20',
-      'anim': 'images/jumping_jack2.gif',
+      'anim': 'images/gif/plank.gif',
       'reqtype': 'time'
     },
     {
       'title': 'COBRA STRETCH',
       'req': '30',
-      'anim': 'images/jumping_jack2.gif',
+      'anim': 'images/gif/chest strecth.gif',
       'reqtype': 'time'
     },
     {
       'title': 'SPINE LUMBER TWIST STRETCH LEFT',
       'req': 'x16',
-      'anim': 'images/jumping_jack2.gif',
+      'anim': 'images/gif/Side Plank With Quad Stretch.gif',
       'reqtype': 'sets'
     },
     {
       'title': 'SPINE LUMBER TWIST STRETCH RIGHT',
       'req': 'x16',
-      'anim': 'images/jumping_jack2.gif',
+      'anim': 'images/gif/Side Plank With Quad Stretch.gif',
       'reqtype': 'sets'
     },
   ];
@@ -120,7 +121,6 @@ class _BigAbsExrState extends State<BigAbsExr> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
-      drawer: NavDrawer(),
       appBar: AppBar(
         title: Text("ABS"),
         backgroundColor: Colors.transparent,
@@ -146,7 +146,7 @@ class _BigAbsExrState extends State<BigAbsExr> {
                     ExerCard(
                       title: begabs[i]['title'],
                       req: begabs[i]['reqtype'] == 'time'
-                          ? "00:" + begabs[i]['req']!
+                          ? "00:" + begabs[i]['req']
                           : begabs[i]['req'],
                       gifpath: begabs[i]['anim'],
                       ontap: () {
