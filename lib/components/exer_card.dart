@@ -2,13 +2,12 @@ import 'package:fitnessapp/components/constants.dart';
 import 'package:flutter/material.dart';
 
 class ExerCard extends StatelessWidget {
-
   String? title;
   String? req;
   String? gifpath;
   Function? ontap;
 
-  ExerCard({this.title, this.req, this.gifpath,this.ontap});
+  ExerCard({this.title, this.req, this.gifpath, this.ontap});
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +27,7 @@ class ExerCard extends StatelessWidget {
               Expanded(
                 flex: 4,
                 child: Container(
-                    color: Colors.white,
-                    child: Image.asset(gifpath!)),
+                    color: Colors.white, child: Image.asset(gifpath!)),
               ),
               Expanded(
                 flex: 6,

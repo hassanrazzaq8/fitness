@@ -5,7 +5,6 @@ import 'package:fitnessapp/screens/nav_pages/start_exer.dart';
 import 'package:fitnessapp/screens/nav_drawer.dart';
 import 'package:fitnessapp/screens/start_ind_exr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gifimage/flutter_gifimage.dart';
 
 class BigAbsExr extends StatefulWidget {
   @override
@@ -150,7 +149,7 @@ class _BigAbsExrState extends State<BigAbsExr> {
                           : begabs[i]['req'],
                       gifpath: begabs[i]['anim'],
                       ontap: () {
-                        //FOR INDIVIDUAL EXERCISE
+                        //FOR INDIVIDUAL EXERCISE5
                         Navigator.push(
                             context,
                             MaterialPageRoute(
